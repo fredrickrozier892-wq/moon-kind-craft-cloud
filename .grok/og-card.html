@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="utf-8" />
+<style>
+@font-face {
+  font-family: "Playfair";
+  src: url("fonts/Playfair-800.ttf") format("truetype");
+  font-weight: 800;
+  font-style: normal;
+}
+@font-face {
+  font-family: "Manrope";
+  src: url("fonts/Manrope-600.ttf") format("truetype");
+  font-weight: 600;
+  font-style: normal;
+}
+html, body {
+  margin: 0;
+  padding: 0;
+  width: 1200px;
+  height: 630px;
+  background: #f3f1ec;
+  overflow: hidden;
+}
+.card {
+  position: relative;
+  width: 1200px;
+  height: 630px;
+  background: #f3f1ec;
+}
+.sheet {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  grid-template-columns: 48px 188px repeat(10, 118px);
+  grid-template-rows: 48px repeat(13, 48px);
+  width: 1520px;
+  height: 720px;
+  transform: translate(-36px, -28px);
+  font-family: "Manrope", sans-serif;
+  font-size: 14px;
+  color: #171614;
+  background: #f3f1ec;
+}
+.cell {
+  box-shadow: inset -1px -1px 0 #c4b8a5;
+  display: flex;
+  align-items: center;
+  padding: 0 14px;
+  background: #f3f1ec;
+  letter-spacing: 0.01em;
+  white-space: nowrap;
+  overflow: hidden;
+}
+.cell.idx {
+  justify-content: center;
+  padding: 0;
+  color: #8a8072;
+  font-size: 12px;
+  background: #ebe6dc;
+}
+.cell.head {
+  background: #1d4a44;
+  color: #f3f1ec;
+  font-size: 11px;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  box-shadow: inset -1px 0 0 rgba(243,241,236,0.32), inset 0 -1px 0 #163b36;
+}
+.cell.corner {
+  background: #163b36;
+  box-shadow: inset -1px -1px 0 #2f5e58;
+}
+.cell.name { font-weight: 600; color: #171614; }
+.cell.pine { background: #1d4a44; color: #f3f1ec; box-shadow: inset -1px -1px 0 #2f5e58; }
+.cell.clay { background: #c4b8a5; color: #171614; }
+.cell.ink { background: #171614; color: #f3f1ec; }
+.cell.muted { color: #6f675c; }
+.cell.num { justify-content: flex-end; font-variant-numeric: tabular-nums; }
+
+.vignette {
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(ellipse 52% 58% at 50% 46%,
+      rgba(243,241,236,0.82) 0%,
+      rgba(243,241,236,0.55) 42%,
+      rgba(243,241,236,0.12) 72%,
+      rgba(243,241,236,0.0) 100%);
+  pointer-events: none;
+}
+
+.lockup {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 148px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.mark {
+  width: 84px;
+  height: 64px;
+  margin-bottom: 26px;
+  filter: drop-shadow(0 1px 0 rgba(243,241,236,0.6));
+}
+h1 {
+  margin: 0;
+  font-family: "Playfair", serif;
+  font-weight: 800;
+  font-size: 156px;
+  line-height: 0.88;
+  letter-spacing: 0.045em;
+  color: #171614;
+}
+.rule {
+  width: 64px;
+  height: 3px;
+  background: #1d4a44;
+  margin: 24px 0 16px;
+  border-radius: 2px;
+}
+.tag {
+  margin: 0;
+  font-family: "Manrope", sans-serif;
+  font-weight: 600;
+  font-size: 20px;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: #1d4a44;
+}
+.grain {
+  position: absolute;
+  inset: 0;
+  opacity: 0.08;
+  pointer-events: none;
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='160' height='160'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>");
+  mix-blend-mode: multiply;
+}
+</style>
+</head>
+<body>
+<div class="card">
+  <div class="sheet" id="sheet"></div>
+  <div class="vignette"></div>
+  <div class="lockup">
+    <svg class="mark" viewBox="0 0 84 64" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+      <rect x="20" y="4" width="44" height="14" rx="3" fill="#c4b8a5"/>
+      <rect x="12" y="22" width="60" height="16" rx="3" fill="#1d4a44"/>
+      <rect x="4" y="42" width="76" height="18" rx="3" fill="#171614"/>
+    </svg>
+    <h1>Пласт</h1>
+    <div class="rule"></div>
+    <p class="tag">B2B GTM-платформа</p>
+  </div>
+  <div class="grain"></div>
+</div>
+<script>
+const headers = ["", "Компания", "Роль", "Сигнал", "Источник", "Слой", "Статус", "Владелец", "Скоринг", "Канал", "След", "Пакет"];
+const names = ["Северсталь", "Яндекс", "Тинькофф", "Ozon", "Сбер", "VK", "Avito", "X5 Group", "МТС", "Аэрофлот", "Магнит", "Wildberries", "Росатом"];
+const roles = ["CMO", "CRO", "Head of Growth", "RevOps", "CEO", "VP Sales", "Demand Gen"];
+const signals = ["hiring", "funding", "tech", "intent", "news"];
+const sources = ["LinkedIn", "HH", "сайт", "Dadata", "CRM"];
+const layers = ["1", "2", "3", "4"];
+const statuses = ["новый", "прогрев", "квал.", "пайп"];
+const owners = ["Иванова", "Петров", "Ким", "Орлова"];
+const scores = ["92", "81", "74", "68", "55", "47"];
+const channels = ["outbound", "inbound", "partner", "event"];
+const sheet = document.getElementById("sheet");
+
+function cell(cls, text) {
+  const d = document.createElement("div");
+  d.className = "cell " + cls;
+  d.textContent = text;
+  return d;
+}
+
+sheet.appendChild(cell("head corner", ""));
+for (let c = 1; c < 12; c++) sheet.appendChild(cell("head", headers[c]));
+
+for (let r = 0; r < 13; r++) {
+  sheet.appendChild(cell("idx", String(r + 1)));
+  sheet.appendChild(cell("name", names[r % names.length]));
+  const row = [
+    roles[r % roles.length],
+    signals[r % signals.length],
+    sources[r % sources.length],
+    layers[r % layers.length],
+    statuses[r % statuses.length],
+    owners[r % owners.length],
+    scores[r % scores.length],
+    channels[r % channels.length],
+    r % 3 === 0 ? "A" : r % 3 === 1 ? "B" : "C",
+  ];
+  row.forEach((val, i) => {
+    let cls = "muted";
+    if (i === 3 && r % 4 === 1) cls = "clay";
+    if (i === 4 && r % 5 === 2) cls = "pine";
+    if (i === 6) cls = "num muted";
+    if (r === 3 && i === 1) cls = "clay";
+    if (r === 6 && i === 5) cls = "ink";
+    if (r === 8 && i === 2) cls = "clay";
+    sheet.appendChild(cell(cls, val));
+  });
+}
+</script>
+</body>
+</html>

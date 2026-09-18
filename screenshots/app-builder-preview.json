@@ -1,0 +1,36 @@
+{
+  "url": "http://127.0.0.1:8080/",
+  "viewports": {
+    "desktop": {
+      "width": 1280,
+      "height": 800,
+      "status": 200,
+      "title": "Пласт",
+      "hasCanvas": false,
+      "bodyTextLen": 1335,
+      "bodyTextHash": "32f53c95a6f1e18babac61850e20d7059e2e1ede7d9f55360e70202ed81f7ad2",
+      "bodyTextPrefix": "Пласт Войти Открыть пространство РОССИЙСКИЙ B2B · GTM Слой данны",
+      "horizontalOverflow": false,
+      "consoleErrors": [],
+      "pageErrors": [],
+      "screenshot": "/workspace/screenshots/app-builder-preview.png"
+    },
+    "mobile": {
+      "width": 390,
+      "height": 844,
+      "status": 200,
+      "title": "Пласт",
+      "hasCanvas": false,
+      "bodyTextLen": 1335,
+      "bodyTextHash": "32f53c95a6f1e18babac61850e20d7059e2e1ede7d9f55360e70202ed81f7ad2",
+      "bodyTextPrefix": "Пласт Войти Открыть пространство РОССИЙСКИЙ B2B · GTM Слой данны",
+      "horizontalOverflow": false,
+      "consoleErrors": [],
+      "pageErrors": [],
+      "screenshot": "/workspace/screenshots/app-builder-preview-mobile.png"
+    }
+  },
+  "brandWarnings": [],
+  "authWarnings": [],
+  "verdictFile": "/workspace/screenshots/app-builder-preview.json"
+}

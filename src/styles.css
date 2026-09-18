@@ -1,0 +1,114 @@
+@import "tailwindcss";
+@import "tw-animate-css";
+
+@theme {
+  --font-sans: "IBM Plex Sans", "Segoe UI", system-ui, sans-serif;
+  --font-display: "Source Serif 4", "Iowan Old Style", Georgia, serif;
+  --font-mono: "IBM Plex Mono", "SF Mono", ui-monospace, Menlo, monospace;
+
+  --color-background: #f3f1ec;
+  --color-foreground: #171614;
+  --color-card: #fffcf7;
+  --color-card-foreground: #171614;
+  --color-popover: #fffcf7;
+  --color-popover-foreground: #171614;
+  --color-primary: #1d4a44;
+  --color-primary-foreground: #f3f1ec;
+  --color-secondary: #ebe6dc;
+  --color-secondary-foreground: #171614;
+  --color-muted: #ebe7df;
+  --color-muted-foreground: #6f6b63;
+  --color-accent: #e4efe9;
+  --color-accent-foreground: #1d4a44;
+  --color-destructive: #8f2d2d;
+  --color-destructive-foreground: #f3f1ec;
+  --color-border: #e4dfd4;
+  --color-input: #e4dfd4;
+  --color-ring: #1d4a44;
+  --color-sidebar: #141311;
+  --color-sidebar-foreground: #f3f1ec;
+  --color-sidebar-muted: #9c9890;
+  --color-sidebar-border: #2a2825;
+  --color-sidebar-accent: #24322f;
+  --color-sidebar-primary: #7dbaad;
+  --color-paper: #f3f1ec;
+  --color-ink: #171614;
+  --color-pine: #1d4a44;
+  --color-clay: #c4b8a5;
+  --color-success: #2f6b45;
+  --color-warning: #8a5a18;
+
+  --radius-xs: 4px;
+  --radius-sm: 6px;
+  --radius-md: 10px;
+  --radius-lg: 14px;
+  --radius-xl: 20px;
+  --radius: 10px;
+
+  --shadow-soft: 0 1px 0 rgba(23, 22, 20, 0.04), 0 8px 24px rgba(23, 22, 20, 0.06);
+}
+
+@layer base {
+  html {
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  html,
+  body,
+  #app {
+    min-height: 100%;
+  }
+
+  body {
+    background: var(--color-background);
+    color: var(--color-foreground);
+    font-family: var(--font-sans);
+    font-size: 14px;
+    line-height: 1.5;
+  }
+
+  h1,
+  h2,
+  h3 {
+    text-wrap: balance;
+  }
+
+  p {
+    text-wrap: pretty;
+  }
+
+  button:not(:disabled),
+  [role="button"]:not(:disabled) {
+    cursor: pointer;
+  }
+
+  * {
+    border-color: var(--color-border);
+  }
+
+  ::selection {
+    background: color-mix(in oklab, var(--color-primary) 18%, transparent);
+  }
+}
+
+@layer utilities {
+  .font-display {
+    font-family: var(--font-display);
+  }
+
+  .tabular {
+    font-variant-numeric: tabular-nums;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}

@@ -1,0 +1,1 @@
+import{t as e}from"./react-SIfiwpqq.js";import{o as t}from"./dist-Cl_3YqOF.js";import{r as n}from"./button-CU_tmsrE.js";e();var r=t();function i({className:e,...t}){return(0,r.jsx)(`div`,{className:n(`animate-pulse rounded-md bg-muted`,e),...t})}export{i as t};
